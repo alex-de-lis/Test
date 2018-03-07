@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Test</string>
+    <string name="football">Футбол</string>
+    <string-array name="sports">
+        <item>Футбол</item>
+        <item>Хоккей</item>
+        <item>Теннис</item>
+        <item>Баскетбол</item>
+        <item>Волейбол</item>
+        <item>Киберспорт</item>
+    </string-array>
+    <string name="title_activity_article">ArticleActivity</string>
+</resources>
