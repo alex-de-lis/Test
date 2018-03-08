@@ -26,6 +26,8 @@
 
     <ScrollView
         android:id="@+id/ScArt"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingBottom="100dp"

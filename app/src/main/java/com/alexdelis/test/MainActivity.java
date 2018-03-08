@@ -13,6 +13,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     ProgressBar pg;
     ListView SportsList;
     Spinner Sports;
+    Button BTN;
     String articles[], choose[]={"football", "hockey", "tennis", "basketball", "volleyball", "cybersport"};
 
     @Override
@@ -40,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Sports=findViewById(R.id.Spiner);
         pg=findViewById(R.id.PG);
+        BTN=findViewById(R.id.Btn);
         ArrayAdapter<?> adapter = ArrayAdapter.createFromResource(this, R.array.sports, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         Sports.setAdapter(adapter);
@@ -53,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
                 DownloadAll(choose[selectedItemPosition]);
                 pg.setVisibility(View.VISIBLE);
                 SportsList.setVisibility(View.INVISIBLE);
+                BTN.setVisibility(View.INVISIBLE);
                 /*AsyncTaskForListArt SpinAT=new AsyncTaskForListArt();
                 SpinAT.execute(choose[selectedItemPosition]);*/
             }
@@ -84,7 +88,15 @@ public class MainActivity extends AppCompatActivity {
             Toast toast = Toast.makeText(getApplicationContext(),"Нет соединения с интернетом", Toast.LENGTH_SHORT);
             toast.show();
             pg.setVisibility(View.INVISIBLE);
+            BTN.setVisibility(View.VISIBLE);
         }
+    }
+
+    public void OnBtnClick(View view)
+    {
+        pg.setVisibility(View.VISIBLE);
+        BTN.setVisibility(View.INVISIBLE);
+        DownloadAll(choose[Sports.getSelectedItemPosition()]);
     }
 
     protected NetworkInfo isOnline()
@@ -96,7 +108,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private class AsyncTaskForListArt extends AsyncTask<String, String, String> {
-
         @Override
         protected String doInBackground(String... params) {
             String myurl = "http://mikonatoruri.win/list.php?category="+params[0];
@@ -127,6 +138,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast toast = Toast.makeText(getApplicationContext(),"Нет соединения с интернетом", Toast.LENGTH_SHORT);
                 toast.show();
                 pg.setVisibility(View.INVISIBLE);
+                BTN.setVisibility(View.VISIBLE);
             }
             else {
                 try {
@@ -151,13 +163,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
-
-
         @Override
-        protected void onPreExecute()
-        {
-
-        }
-
+        protected void onPreExecute(){}
     }
 }

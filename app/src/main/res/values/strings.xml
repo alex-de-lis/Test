@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Test</string>
     <string name="football">Футбол</string>
+    <string name="Try_Again">Повторить</string>
     <string-array name="sports">
         <item>Футбол</item>
         <item>Хоккей</item>
